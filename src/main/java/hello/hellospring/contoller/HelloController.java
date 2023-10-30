@@ -16,12 +16,16 @@ public class HelloController {
         return "hello";
     }
 
+
+    // viewResolver 확인 후 templates에서 찾음
     @GetMapping("hello-mvc")
     public String helloMvc(@RequestParam("name") String name, Model model){
         model.addAttribute("name", name);
         return "hello-template";
     }
 
+    // viewResolver 대신 HttpMessageConverter
+    // StringConverter :: 문자
     @ResponseBody
     @GetMapping("hello-string")
     public String helloString(@RequestParam("name") String name){
@@ -31,7 +35,9 @@ public class HelloController {
 
 
     // 객체가 오면 json방식으로 반환
+    // viewResolver 대신 HttpMessageConverter
     // JsonConverter :: 객체, StringConverter :: 문자
+    // MappingJackson2HttpMessageConverter
     @GetMapping("hello-api")
     @ResponseBody
     public Hello helloApi(@RequestParam("name") String name) {
@@ -39,7 +45,6 @@ public class HelloController {
         hello.setName(name);
         return hello;
     }
-
 
 
     static class Hello{
