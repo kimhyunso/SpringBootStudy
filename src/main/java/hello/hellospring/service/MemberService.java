@@ -18,9 +18,9 @@ public class MemberService {
 
     private final MemberRepository memberRepository;
 
-
     public MemberService(MemberRepository memberRepository) {
         this.memberRepository = memberRepository;
+
     }
 
 
@@ -28,7 +28,17 @@ public class MemberService {
      *  회원가입
      */
     public Long join(Member member){
-        // 같은 이름이 있는 중복 회원 x
+        // 시간 찍기 : 공통관심사항
+       /* long start = System.currentTimeMillis();
+        try{
+            // 같은 이름이 있는 중복 회원 x
+        }finally {
+            long end = System.currentTimeMillis();
+            long timeMs = end - start;
+            System.out.println("join = " + timeMs + "ms");
+        }*/
+
+        // 핵심관심사항
         extracted(member); // 중복회원검증
         memberRepository.save(member);
         return member.getId();
@@ -45,6 +55,15 @@ public class MemberService {
      * 전체 회원 조회
      */
     public List<Member> findMembers(){
+        // 시간 찍기 : 공통관심사항
+        /*long start = System.currentTimeMillis();
+        try{
+        }finally {
+            long end = System.currentTimeMillis();
+            long timeMs = end - start;
+            System.out.println("findMembers = " + timeMs + "ms");
+        }*/
+        // 핵심관심사항
         return memberRepository.findAll();
     }
 

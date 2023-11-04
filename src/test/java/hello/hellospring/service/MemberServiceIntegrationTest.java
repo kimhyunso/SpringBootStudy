@@ -11,6 +11,8 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.annotation.Commit;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
+
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
@@ -42,7 +44,7 @@ class MemberServiceIntegrationTest {
     }
 
     @Test
-    public void 중복회원예외(){
+    public void 중복회원예외() {
         // given
         Member member1 = Member.builder().name("spring").build();
         Member member2 = Member.builder().name("spring").build();
@@ -64,7 +66,11 @@ class MemberServiceIntegrationTest {
 
 
     @Test
-    void findMembers() {
+    void 모든회원조회() {
+
+        List<Member> members = service.findMembers();
+        assertThat(members).isNotNull();
+
     }
 
     @Test
